@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ZTE MC889 5G Modem",
+        "description": "Enter the modem's IP address and admin password.\n\nWARNING: 5 failed login attempts = permanent lockout (power cycle to reset).",
+        "data": {
+          "host": "Host",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to modem — check IP and network",
+      "invalid_auth": "Invalid password",
+      "lockout": "Modem is locked out — power cycle it to reset"
+    },
+    "abort": {
+      "already_configured": "This modem is already configured"
+    }
+  }
+}
