@@ -28,6 +28,16 @@ from .const import DOMAIN
 from .coordinator import ZteMC889Coordinator
 from .zte_api import signal_quality
 
+# Map raw modem PPP status strings to human-readable labels
+PPP_STATUS_MAP: dict[str, str] = {
+    "ppp_connected": "Connected",
+    "ppp_disconnected": "Disconnected",
+    "ppp_connecting": "Connecting",
+    "ppp_disconnecting": "Disconnecting",
+    "ppp_idle": "Idle",
+    "ppp_dial": "Dialing",
+}
+
 
 @dataclass(frozen=True, kw_only=True)
 class ZteMC889SensorDescription(SensorEntityDescription):
@@ -276,6 +286,10 @@ class ZteMC889Sensor(CoordinatorEntity[ZteMC889Coordinator], SensorEntity):
                 return float(value)
             except (ValueError, TypeError):
                 return None
+
+        # Map PPP status to human-readable string
+        if desc.key == "ppp_status":
+            return PPP_STATUS_MAP.get(value, value)
 
         return value
 
